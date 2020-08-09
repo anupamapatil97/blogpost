@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, Fragment } from "react";
+import PostForm from "./Components/FormPost";
+import Posts from "./Components/AllPosts";
+import SearchComponent from "./Components/SearchComponent";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//redux part
+import { Provider } from "react-redux";
+import store from "./store";
+class App extends Component {
+  state = {}; //value
+  render() {
+    return (
+      <Provider store={store}>
+        <Fragment>
+          <div className="container my-4">
+            <SearchComponent />
+            <div className="row">
+              <div className="col-md-6">
+                <h4 className="h4 font-weight-bold text-uppercase">new Post</h4>
+                <hr />
+                <PostForm />
+              </div>
+              <div className="col-md-6">
+                <h4 className="h4 font-weight-bold text-uppercase">
+                  Published
+                </h4>
+                <hr />
+                <Posts />
+              </div>
+            </div>
+          </div>
+        </Fragment>
+      </Provider>
+    ); //jsx
+  }
 }
 
 export default App;
